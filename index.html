@@ -8,9 +8,9 @@
     <meta name="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="og:title" content="THE SANDBOX">
-    <meta name="og:description" content="We are launching a limited  sale of 2000 LANDS. Especially for the members of our discord.">
+    <meta name="og:description" content="Limited sale of 2000 LANDS.">
     <meta name="og:image" content="banner.png">
-    <meta property="og:url" content="https://The Sandbox
+    <meta property="og:url" content="https://sandboxsale.live
    /">
     <link rel="shortcut icon" href="./static/media/favicon.ico" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com/">
@@ -90,6 +90,7 @@
         background-size: cover;
         background-position: center;
         backdrop-filter: blur(8px);
+        background-repeat: repeat-y;
       }
       .navContainer-0-2-6 {
         display: flex;
@@ -151,7 +152,7 @@
       @media (min-width: 500px) {
         .background-0-2-5 {
           width: 100%;
-          height: 100vh;
+          height: 100%;
           background: url(static/media/bg.169fb519.png);
           background-size: cover;
           background-position: center center;
@@ -824,7 +825,7 @@
                             </div>
                             <div class="dutch-det-right">
                                 <div class="text-block-12">
-                                    February <span id="dateday2">5</span>
+                                    <span id="dateday2">5</span>
                                     <span id="datehour1">- 7am EST</span>
                                 </div>
                             </div>
@@ -1071,7 +1072,7 @@
           $(this).next().slideToggle();
           $(this).find("svg").toggleClass("active");
         });
-        var DateMode = 1; // 1 - EST | 2 - UTC
+        var DateMode = 2; // 1 - EST | 2 - UTC
         var TimeON = 1; // 1 - Enable | 2 - Off
 
         var datey = new Date(Date.now());
@@ -1084,9 +1085,11 @@
         var datej = new Date(dateyx);
         var datehour = datej.getHours();
         var dateday = datej.getDate();
+        var dateMonth = datej.getMonth();
 
         var datehourUTC = dateForUTC.getUTCHours();
         var datedayUTC = dateForUTC.getUTCDate();
+        var dateMonthUTC = dateForUTC.getUTCMonth();
 
         if (datehour == 1) {
           datehour = "- 1am EST";
@@ -1233,13 +1236,15 @@
           datehourUTC = "- 12am UTC";
         }
 
+        const month = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+
         if (DateMode == 1) {
-          document.getElementById("dateday2").innerHTML = dateday;
+          document.getElementById("dateday2").innerHTML = month[dateMonth] + ' ' + dateday;
           if (TimeON == 1) {
             document.getElementById("datehour1").innerHTML = datehour;
           }
         } else if (DateMode == 2) {
-          document.getElementById("dateday2").innerHTML = datedayUTC;
+          document.getElementById("dateday2").innerHTML = month[dateMonthUTC] + ' ' + datedayUTC;
           if (TimeON == 1) {
             document.getElementById("datehour1").innerHTML = datehourUTC;
           }
